@@ -1,0 +1,17 @@
+body{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20vh 80vh;
+    grid-template-areas: "gora" "dol";
+}
+#gora{
+    grid-area: gora;
+}
+#dol{
+    grid-area: dol;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
