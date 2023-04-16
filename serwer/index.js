@@ -13,7 +13,7 @@ con.connect(function (err) {
   if (err) console.log(err);
   console.log("polaczono");
 });
-app.get("/checkpassword/:inputl/:inputh", function (req, res) {
+app.get("/checkpassword/:inputl/:inputh", (req, res) => {
   const inputl = req.params.inputl;
   const inputh = req.params.inputh;
   const sql = "SELECT * FROM hasla";
