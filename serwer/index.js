@@ -16,22 +16,32 @@ con.connect(function (err) {
 app.get("/checkpassword/:inputl/:inputh", (req, res) => {
   const inputl = req.params.inputl;
   const inputh = req.params.inputh;
-  const sql = "SELECT * FROM hasla";
+  const sql = `SELECT * FROM hasla WHERE Login='${inputl}'`;
   var passwords;
   con.query(sql, function (err, result, fields) {
     if (err) console.log(err);
-    passwords = JSON.parse(JSON.stringify(result));
-    check(passwords);
+    else {
+      passwords = result;
+      check(passwords);
+    }
   });
   var zmienna;
   function check(passwords) {
-    for (let i = 0; i <= passwords.length - 1; i++) {
-      if (inputl == passwords[i].Login && inputh == passwords[i].Password) {
-        zmienna = "access";
-      }
-    }
-    if (zmienna == undefined) {
+    console.log(passwords.length);
+    if (passwords.length == 0) {
       zmienna = "no access";
+    } else {
+      if (
+        inputh == passwords[0].Password &&
+        passwords[0].uprawnienia == "admin"
+      ) {
+        zmienna = "admin";
+      } else if (
+        inputh == passwords[0].Password &&
+        passwords[0].uprawnienia == "user"
+      ) {
+        zmienna = "user";
+      }
     }
     res.send(zmienna);
   }
