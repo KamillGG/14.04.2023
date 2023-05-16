@@ -1,7 +1,9 @@
 async function logowanie() {
   const inputl = document.getElementById("inputl").value;
   const inputh = document.getElementById("inputh").value;
-
+  if(inputl.includes(";") || inputl.includes(" ")){
+    return;
+  }
   const data = await fetch(`${baseurl}/checkpassword/${inputl}/${inputh}`).then(
     (response) => response.text()
   );

@@ -27,7 +27,6 @@ app.get("/checkpassword/:inputl/:inputh", (req, res) => {
   });
   var zmienna;
   function check(passwords) {
-    console.log(passwords.length);
     if (passwords.length == 0) {
       zmienna = "no access";
     } else {
